@@ -24,6 +24,8 @@
     .infographic{display:flex;align-items:center;justify-content:center;padding:6px}
     @media (max-width:980px){.grid{flex-direction:column}}
     .video-card{display:flex;flex-direction:column;gap:14px}
+    .profile-card{display:flex;gap:16px;align-items:center;padding:14px;margin-bottom:18px;border-radius:12px;background:linear-gradient(90deg,#ffffff,#fbfdff);box-shadow:0 6px 18px rgba(11,58,102,0.04)}
+    .avatar{width:84px;height:84px;border-radius:10px;object-fit:cover;border:1px solid #eef2f7}
     .thumb{position:relative;border-radius:10px;overflow:hidden;background:#000;height:0;padding-bottom:56.25%;box-shadow:0 8px 24px rgba(11,58,102,0.08)}
     .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.02) saturate(1.05)}
     .play-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:72px;height:72px;background:linear-gradient(180deg,rgba(43,140,255,0.95),rgba(19,82,204,0.95));border-radius:50%;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 20px rgba(43,140,255,0.28)}
@@ -42,6 +44,15 @@
   <div class="wrap">
     <h1>Infographic và Video YouTube</h1>
     <p class="lead">Minh họa trực quan cùng video hướng dẫn. Nhấn nút "Phát trên trang" để xem video ngay lập tức.</p>
+
+    <div class="profile-card">
+      <img src="assets/avatar.png" alt="Avatar" class="avatar">
+      <div>
+        <div style="font-weight:700;color:#0b3a66;font-size:18px">Tran Minh Chau</div>
+        <div style="color:var(--muted);margin-top:6px">MSSV: CT005H001 • Lớp: CT005H • Ngành: Công nghệ thông tin</div>
+        <div style="margin-top:8px"><a href="mailto:contact@example.com" class="muted">contact@example.com</a> • <a href="#" class="muted">Github</a></div>
+      </div>
+    </div>
     <div class="grid">
       <div class="card infographic">
         <!-- Embedded infographic image (attach the provided file to assets/infographic.png) -->
@@ -49,6 +60,20 @@
           <img src="assets/infographic.png" alt="Infographic: Lợi ích của công nghệ số" class="infographic-img">
           <figcaption style="margin-top:10px;color:#556; font-size:13px">Infographic: Lợi ích của công nghệ số — minh họa nội dung học tập.</figcaption>
         </figure>
+      </div>
+
+      <div class="card">
+        <h2 style="margin:0 0 8px;font-size:16px;color:#0b3a66;font-weight:600">Sản phẩm: Báo cáo (PDF)</h2>
+        <div style="margin-top:6px">
+          <object data="assets/document.pdf" type="application/pdf" width="100%" height="260">
+            <p class="muted">Trình duyệt không hỗ trợ hiển thị PDF. Tải về: <a href="assets/document.pdf" download>Download PDF</a></p>
+          </object>
+        </div>
+        <div style="margin-top:12px" class="links">
+          <a href="assets/document.pdf" download class="button secondary">Tải PDF</a>
+          <a href="assets/document.pdf" target="_blank" rel="noopener" class="muted">Mở PDF</a>
+        </div>
+        <p class="muted" style="margin-top:8px">Báo cáo sản phẩm hoàn chỉnh (PDF).</p>
       </div>
 
       <div class="card video-card">
