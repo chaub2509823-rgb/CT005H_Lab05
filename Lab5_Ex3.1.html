@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Infographic và Video YouTube — Minh họa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --gap:28px;
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --accent:#2b8cff;
+      --muted:#6b7280;
+      --max-w:1100px;
+    }
+    html,body{height:100%}
+    body{font-family:Inter, system-ui, -apple-system, Arial, sans-serif;margin:0;background:linear-gradient(180deg,#f7fbff 0%,var(--bg) 100%);color:#0f172a;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:var(--max-w);margin:48px auto;padding:28px}
+    h1{font-size:28px;margin:0;color:#0b3a66;font-weight:700;letter-spacing:-0.5px}
+    .lead{color:#334155;margin-top:8px;margin-bottom:20px;font-size:15px;max-width:760px}
+    .grid{display:flex;gap:var(--gap);align-items:flex-start}
+    .card{background:var(--card);border-radius:14px;box-shadow:0 10px 30px rgba(15,23,42,0.06);padding:22px;flex:1}
+    .infographic{display:flex;align-items:center;justify-content:center;padding:6px}
+    @media (max-width:980px){.grid{flex-direction:column}}
+    .video-card{display:flex;flex-direction:column;gap:14px}
+    .thumb{position:relative;border-radius:10px;overflow:hidden;background:#000;height:0;padding-bottom:56.25%;box-shadow:0 8px 24px rgba(11,58,102,0.08)}
+    .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.02) saturate(1.05)}
+    .play-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:72px;height:72px;background:linear-gradient(180deg,rgba(43,140,255,0.95),rgba(19,82,204,0.95));border-radius:50%;display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 20px rgba(43,140,255,0.28)}
+    .play-btn:after{content:'';display:block;margin-left:6px;border-style:solid;border-width:12px 0 12px 20px;border-color:transparent transparent transparent #fff}
+    .links{display:flex;gap:12px;align-items:center}
+    a.button{display:inline-block;padding:10px 14px;background:var(--accent);color:#fff;border-radius:10px;text-decoration:none;font-weight:600}
+    a.button.secondary{background:#eef6ff;color:var(--accent);border:1px solid rgba(43,140,255,0.12)}
+    .muted{color:var(--muted);font-size:14px}
+    .infographic-img{width:100%;height:auto;border-radius:10px;display:block;border:1px solid #eef2f7}
+    figure{margin:0}
+    figcaption{color:var(--muted);font-size:13px;margin-top:10px}
+    .site-footer{max-width:var(--max-w);margin:36px auto 80px;padding:18px 20px;color:var(--muted);font-size:13px;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Infographic và Video YouTube</h1>
+    <p class="lead">Minh họa trực quan cùng video hướng dẫn. Nhấn nút "Phát trên trang" để xem video ngay lập tức.</p>
+    <div class="grid">
+      <div class="card infographic">
+        <!-- Embedded infographic image (attach the provided file to assets/infographic.png) -->
+        <figure style="width:100%;margin:0">
+          <img src="assets/infographic.png" alt="Infographic: Lợi ích của công nghệ số" class="infographic-img">
+          <figcaption style="margin-top:10px;color:#556; font-size:13px">Infographic: Lợi ích của công nghệ số — minh họa nội dung học tập.</figcaption>
+        </figure>
+      </div>
+
+      <div class="card video-card">
+        <div id="player" class="thumb" aria-label="Vùng phát video">
+          <img src="https://img.youtube.com/vi/gksP0g96Ve8/maxresdefault.jpg" alt="Thumbnail video" onerror="this.src='https://img.youtube.com/vi/gksP0g96Ve8/hqdefault.jpg'">
+          <div class="play-btn" id="playBtn" title="Phát video" role="button" tabindex="0"></div>
+        </div>
+
+        <div class="links">
+          <a href="#" id="playLink" class="button">Phát trên trang</a>
+          <a href="https://youtu.be/gksP0g96Ve8" target="_blank" rel="noopener" class="muted">Mở trên YouTube</a>
+        </div>
+        <p class="muted">Nhấn "Phát trên trang" hoặc biểu tượng play để xem video ngay trong trang.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const videoId = 'gksP0g96Ve8';
+    const playBtn = document.getElementById('playBtn');
+    const playLink = document.getElementById('playLink');
+    const player = document.getElementById('player');
+
+    function createIframe(autoplay){
+      const iframe = document.createElement('iframe');
+      iframe.width = '100%';
+      iframe.height = '100%';
+      iframe.style.position = 'absolute';
+      iframe.style.inset = '0';
+      iframe.style.border = '0';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.src = 'https://www.youtube.com/embed/' + videoId + (autoplay ? '?autoplay=1' : '');
+      return iframe;
+    }
+
+    function playVideo(e){
+      e && e.preventDefault();
+      // Clear thumbnail and insert iframe
+      player.innerHTML = '';
+      player.appendChild(createIframe(true));
+    }
+
+    playBtn.addEventListener('click', playVideo);
+    playBtn.addEventListener('keydown', (ev)=>{ if(ev.key === 'Enter' || ev.key === ' ') playVideo(ev); });
+    playLink.addEventListener('click', playVideo);
+  </script>
+
+  <noscript>
+    <div style="max-width:1100px;margin:20px auto;padding:10px;background:#fff;border-radius:8px;text-align:center">JavaScript bị vô hiệu — mở video trực tiếp: <a href="https://youtu.be/gksP0g96Ve8" target="_blank" rel="noopener">https://youtu.be/gksP0g96Ve8</a></div>
+  </noscript>
+
+  <footer class="site-footer">
+    © 2026 Tran Minh Chau. Bản quyền thuộc về tác giả. Nếu cần, liên hệ: <a href="mailto:contact@example.com">contact@example.com</a>
+  </footer>
+</body>
+</html>
